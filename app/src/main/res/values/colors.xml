@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="MaincolorPrimary">#008577</color>
+    <color name="MaincolorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="Add_EditColorPrimary">#4e73b5</color>
+    <color name="Add_EditColorPrimaryDark"> #c6e3ff</color>
+
+
+    <color name="tan_background">#FFF7DA</color>
+
+</resources>

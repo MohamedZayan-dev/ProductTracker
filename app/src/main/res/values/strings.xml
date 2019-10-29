@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Product Tracker</string>
+    <string name="delete_all">Delete All Products</string>
+    <string name="delete_one">Delete Product</string>
+    <string name="save">save</string>
+    <string name="order">order</string>
+</resources>

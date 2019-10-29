@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/MaincolorPrimary</item>
+        <item name="colorPrimaryDark">@color/MaincolorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Add-edit_Activity style. -->
+    <style name="Add_EditThem" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/Add_EditColorPrimary</item>
+        <item name="colorPrimaryDark">@color/Add_EditColorPrimaryDark</item>
+
+    </style>
+
+</resources>
