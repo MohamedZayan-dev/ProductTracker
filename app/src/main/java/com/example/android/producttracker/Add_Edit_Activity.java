@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.support.v4.app.LoaderManager;
@@ -50,6 +51,8 @@ public class Add_Edit_Activity extends AppCompatActivity implements LoaderManage
     private EditText nameEditText;
     private EditText priceEditText;
     private EditText quantityEditText;
+    private Button increment;
+    private Button decrement;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int GALLERY_REQUEST = 2;
     private Uri Gallery_imageUri;
@@ -58,6 +61,7 @@ public class Add_Edit_Activity extends AppCompatActivity implements LoaderManage
     private static final int LoaderId = 0;
     private String filePath;
     private Uri CameraimageUri;
+   private int quantity;
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -77,11 +81,27 @@ public class Add_Edit_Activity extends AppCompatActivity implements LoaderManage
         nameEditText = findViewById(R.id.edit_name);
         priceEditText = findViewById(R.id.editPrice);
         quantityEditText = findViewById(R.id.edit_quantity);
+        increment = findViewById(R.id.increment);
+        decrement = findViewById(R.id.decrement);
 
         nameEditText.setOnTouchListener(onTouchListener);
         priceEditText.setOnTouchListener(onTouchListener);
         quantityEditText.setOnTouchListener(onTouchListener);
         image.setOnTouchListener(onTouchListener);
+
+
+            increment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    increment();
+                }
+            });
+            decrement.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    decrement();
+                }
+            });
 
         if (mCurrentUri == null) {
             setTitle("Add a product");
@@ -96,16 +116,39 @@ public class Add_Edit_Activity extends AppCompatActivity implements LoaderManage
                 PhotoDialog();
             }
         });
+
     }
 
 
+
+    private void increment(){
+        try {
+            quantity = Integer.parseInt(quantityEditText.getText().toString().trim());
+        } catch (NumberFormatException n) {
+            n.printStackTrace();
+        }
+        quantity++;
+        quantityEditText.setText(""+quantity);
+    }
+    private void decrement(){
+        try {
+            quantity = Integer.parseInt(quantityEditText.getText().toString().trim());
+        } catch (NumberFormatException n) {
+            n.printStackTrace();
+        }
+        if (quantity>0) {
+            quantity--;
+            quantityEditText.setText(""+quantity);
+        }
+        else
+            Toast.makeText(this,"Quantity must be larger than 0",Toast.LENGTH_LONG).show();
+    }
 
     private void saveProduct() {
 
 
         String name = nameEditText.getText().toString().trim();
         int price = Integer.parseInt(priceEditText.getText().toString().trim());
-        int quanitiy = Integer.parseInt(quantityEditText.getText().toString().trim());
 
         ContentValues values = new ContentValues();
         if (Gallery_imageUri != null)
@@ -113,7 +156,7 @@ public class Add_Edit_Activity extends AppCompatActivity implements LoaderManage
 
         values.put(ProductEntry.col_name, name);
         values.put(ProductEntry.col_price, price);
-        values.put(ProductEntry.col_quantity, quanitiy);
+        values.put(ProductEntry.col_quantity, quantity);
         if (CameraimageUri != null)
             values.put(ProductEntry.col_image, CameraimageUri.toString());
         if (mCurrentUri == null) {

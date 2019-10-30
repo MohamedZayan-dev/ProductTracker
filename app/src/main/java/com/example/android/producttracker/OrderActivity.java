@@ -31,8 +31,9 @@ public class OrderActivity extends AppCompatActivity
         ShopOderAddress=findViewById(R.id.et_order_shop_address);
         SupplierOrderName=findViewById(R.id.et_order_supplier_name);
         SupplierOrderEmail=findViewById(R.id.et_order_supplier_email);
+        orderButton= findViewById(R.id.orderButton);
 
-orderButton.setOnClickListener(new View.OnClickListener() {
+        orderButton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         sendEmail();
